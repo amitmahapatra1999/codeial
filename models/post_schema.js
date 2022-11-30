@@ -12,14 +12,20 @@ const PostSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "user",
     },
+    comment: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "comment",
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
 
-const Post = mongoose.model("Post", PostSchema);
+const Post = mongoose.model("post", PostSchema);
 
 module.exports = Post;

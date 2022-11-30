@@ -54,36 +54,29 @@
                     </p>
                   </div>
                 </div>
-
-                <div class="border-top row py-2">
-                  <div class="col-3"><p>Write a comment:</p></div>
-                  <div class="col-7">
-                    <input type="text" class="form-control" />
+                <form action="/post/create-comment" method="post">
+                  <div class="border-top row py-2">
+                    <div class="col-3">
+                      <p class="mb-0">Write a comment:</p>
+                    </div>
+                    <div class="col-7">
+                      <input type="text" class="form-control" name="content" />
+                      <input
+                        type="hidden"
+                        class="form-control"
+                        name="post"
+                        value="<%= post._id %>"
+                      />
+                    </div>
+                    <div class="col-2">
+                      <button class="btn btn-light" type="submit">
+                        Submit
+                      </button>
+                    </div>
                   </div>
-                  <div class="col-2">
-                    <button class="btn btn-light">Submit</button>
-                  </div>
-                </div>
+                </form>
                 <div class="border-top pt-2">
                   <h6>Comments</h6>
-                  <div class="row mb-3">
-                    <div class="col-1">
-                      <div
-                        class="bg-light text-success rounded-circle text-center p-1"
-                      >
-                        A
-                      </div>
-                    </div>
-                    <div class="col-3">
-                      <span class="fw-bold">Amit Mahapatra</span>
-                    </div>
-                    <div class="col-8">
-                      <span
-                        >Very Good hbnebf ugdjegugfe hgjebjegfjef
-                        jhgehfbdefjgfgdfgihgkehggh</span
-                      >
-                    </div>
-                  </div>
                   <div class="row mb-3">
                     <div class="col-1">
                       <div

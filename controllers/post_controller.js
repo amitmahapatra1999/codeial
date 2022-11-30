@@ -1,4 +1,5 @@
 const Post = require("../models/post_schema");
+const Comment = require("../models/comment_schema");
 
 module.exports.CreatePost = function (req, res) {
   if (req.body.content) {
@@ -20,5 +21,27 @@ module.exports.CreatePost = function (req, res) {
     );
   } else {
     return res.redirect("back");
+  }
+};
+
+module.exports.CreateComment = function (req, res) {
+  // console.log(req.body);
+  // return res.redirect("back");
+  if (req.body.content) {
+    Comment.create(
+      {
+        content: req.body.content,
+        user: req.user._id,
+        post: req.body.post,
+      },
+      function (err, data) {
+        if (err) {
+          console.log(`Error while adding comment to db: ${err}`);
+          return res.redirect("back");
+        }
+        console.log("Comment Added succesfully");
+        return res.redirect("back");
+      }
+    );
   }
 };

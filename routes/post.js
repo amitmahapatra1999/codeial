@@ -9,4 +9,10 @@ router.post(
   PostController.CreatePost
 );
 
+router.post(
+  "/create-comment",
+  authMiddleware.checkAuthentication,
+  PostController.CreateComment
+);
+
 module.exports = router;
