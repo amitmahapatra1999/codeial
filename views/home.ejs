@@ -1,5 +1,112 @@
 <link rel="stylesheet" href="/css/home.css" />
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-3">Profiles section</div>
+    <div class="col-6">
+      <section id="post-form">
+        <div class="container">
+          <div class="card p-3 border-0 shadow-lg">
+            <%if(locals.user){%>
+            <div class="card-heading text-center border-bottom">
+              <h2>Create Post</h2>
+            </div>
+            <div class="card-body">
+              <form action="/post/create-post" method="post">
+                <div class="mb-3">
+                  <label class="form-label">Post Title</label>
+                  <input type="text" class="form-control" name="title" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Post Content</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    name="content"
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+            <%}else{%>
+            <div>
+              <h6>Login to write a post <a href="/user/login">Login</a></h6>
+            </div>
+            <%}%>
+          </div>
+        </div>
+      </section>
 
-<h1>This is home page</h1>
+      <section id="post" class="mt-5">
+        <div class="container-fluid">
+          <div class="row">
+            <%if(locals.posts){%> <%for(let post of posts){%>
+            <div class="col-12">
+              <div class="card p-3 mb-3 post-card border-0">
+                <div class="row">
+                  <div class="col-9">
+                    <h5 class="fw-bold"><%= post.title %></h5>
+                    <p><%= post.content %></p>
+                  </div>
+                  <div class="col-3">
+                    <p class="mb-0">
+                      created by:<br />
+                      <%= post.user.name %>
+                    </p>
+                  </div>
+                </div>
 
-<script src="/js/home.js"></script>
+                <div class="border-top row py-2">
+                  <div class="col-3"><p>Write a comment:</p></div>
+                  <div class="col-7">
+                    <input type="text" class="form-control" />
+                  </div>
+                  <div class="col-2">
+                    <button class="btn btn-light">Submit</button>
+                  </div>
+                </div>
+                <div class="border-top pt-2">
+                  <h6>Comments</h6>
+                  <div class="row mb-3">
+                    <div class="col-1">
+                      <div
+                        class="bg-light text-success rounded-circle text-center p-1"
+                      >
+                        A
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <span class="fw-bold">Amit Mahapatra</span>
+                    </div>
+                    <div class="col-8">
+                      <span
+                        >Very Good hbnebf ugdjegugfe hgjebjegfjef
+                        jhgehfbdefjgfgdfgihgkehggh</span
+                      >
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-1">
+                      <div
+                        class="bg-light text-success rounded-circle text-center p-1"
+                      >
+                        A
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <span class="fw-bold">Amit Mahapatra</span>
+                    </div>
+                    <div class="col-8">
+                      <span>Very Good hbnebf ugdjegugfe hgjebjegfjef </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%}%> <%}%>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="col-3">chat Section</div>
+  </div>
+</main>
