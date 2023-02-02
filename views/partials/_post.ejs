@@ -1,0 +1,62 @@
+<div class="col-12">
+  <div class="card p-3 mb-3 post-card border-0">
+    <div class="row mb-2">
+      <div class="col-9">
+        <h5 class="fw-bold"><%= post.title %></h5>
+        <p><%= post.content %></p>
+      </div>
+      <div class="col-3">
+        <p class="mb-0">
+          created by:<br />
+          <%= post.user.name %>
+        </p>
+        <% if(locals.user && locals.user.id == post.user.id){ %>
+        <a class="btn btn-light" href="/post/destroy/<%= post.id %>">Delete</a>
+        <% } %>
+      </div>
+    </div>
+    <form action="/comment/create" method="post">
+      <div class="border-top row py-2">
+        <div class="col-3">
+          <p class="mb-0">Write a comment:</p>
+        </div>
+        <div class="col-7">
+          <input type="text" class="form-control" name="content" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="post"
+            value="<%= post._id %>"
+          />
+        </div>
+        <div class="col-2">
+          <button class="btn btn-light" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+    <div class="border-top pt-2">
+      <h6>Comments</h6>
+      <% for(let comment of post.comments){ %>
+      <div class="row mb-3">
+        <div class="col-1">
+          <div class="bg-light text-success rounded-circle text-center p-1">
+            A
+          </div>
+        </div>
+
+        <div class="col-3">
+          <span class="fw-bold"><%= comment.user.name %></span>
+        </div>
+        <div class="col-8">
+          <span><%= comment.content %></span>
+          <% if(locals.user && locals.user.id == comment.user.id){ %>
+          <a class="btn btn-light" href="/comment/destroy/<%= comment.id %>"
+            >delete</a
+          >
+          <%}%>
+        </div>
+      </div>
+      <%}%>
+    </div>
+  </div>
+</div>

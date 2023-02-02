@@ -12,6 +12,8 @@ const passportLocal = require("./config/passport-local-strategy");
 const authMiddleware = require("./config/local-auth-middleware");
 const MongoStore = require("connect-mongo");
 const sassMiddleware = require("node-sass-middleware");
+const flash = require("connect-flash");
+const flashMware = require("./config/flashmiddleware");
 
 // setup sass middleware
 app.use(
@@ -34,6 +36,7 @@ app.use(cookieParser());
 
 // setup static file access
 app.use(express.static("./assets"));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 // setup express layout
 app.use(expressLayouts);
@@ -71,6 +74,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(authMiddleware.setAuthenticatedUser);
 
+app.use(flash());
+app.use(flashMware.setFlash);
 // setup express router
 app.use("/", router);
 

@@ -9,12 +9,17 @@ const authMiddleware = require("../config/local-auth-middleware");
 router.get("/login", UserController.Login);
 router.get("/signup", UserController.Signup);
 router.get(
-  "/profile",
+  "/profile/:id",
   authMiddleware.checkAuthentication,
   UserController.Profile
 );
 
 router.post("/create", UserController.CreateUser);
+router.post(
+  "/update/:id",
+  authMiddleware.checkAuthentication,
+  UserController.Update
+);
 
 // use passport as a middleware to authenticate
 router.post(

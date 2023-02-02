@@ -1,18 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../config/local-auth-middleware");
-const PostController = require("../controllers/post_controller");
+const CommentController = require("../controllers/comment_controller");
 
 router.post(
   "/create",
   authMiddleware.checkAuthentication,
-  PostController.Create
+  CommentController.Create
 );
 
 router.get(
   "/destroy/:id",
   authMiddleware.checkAuthentication,
-  PostController.Destroy
+  CommentController.Destroy
 );
 
 module.exports = router;
