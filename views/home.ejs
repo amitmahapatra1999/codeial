@@ -40,7 +40,7 @@
         <div class="container-fluid">
           <div class="row">
             <%if(locals.posts){%> <%for(let post of posts){%>
-            <div class="col-12">
+            <div class="col-12" id="<%= post.id %>">
               <div class="card p-3 mb-3 post-card border-0">
                 <div class="row mb-2">
                   <div class="col-9">
