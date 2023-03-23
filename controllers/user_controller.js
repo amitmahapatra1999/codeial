@@ -127,8 +127,11 @@ module.exports.Update = async (req, res) => {
 //
 // create a new authenticated session
 // pasport local  authentication
-module.exports.CreateSession = (req, res) => {
-  req.flash("success", "Logged in Succesfully");
+module.exports.CreateSession = function (req, res) {
+  console.log("log at create session");
+  // console.log("request", req);
+  console.log("response", res);
+  // req.flash("success", "Logged in Successfully");
   return res.redirect("/");
 };
 
